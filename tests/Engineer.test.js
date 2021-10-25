@@ -19,7 +19,7 @@ describe('Engineer', () => {
     describe('getRole', () => {
         it("Retrieve role via getRole()", () => {
             const roleVal = "Engineer";
-            const emp = new Engineer("Anna", "1234", "a@test.com", githubVal);
+            const emp = new Engineer("Anna", "1234", "a@test.com", "AnnaNguyen1");
             expect(emp.getRole()).toEqual(roleVal);
         });
     });
