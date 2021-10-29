@@ -1,11 +1,11 @@
 const { describe, it, expect } = require("@jest/globals");
-const Employee = require("./lib/Employee");
+const Employee = require("../lib/Employee");
 
 // Initialisation
 describe("Initialisation", () => {
   it("Return an object", () => {
     const emp = new Employee();
-    expect(typeof emp === object).toEqual(true);
+    expect(typeof emp === "object").toEqual(true);
   });
 
   //Name
@@ -18,14 +18,14 @@ describe("Initialisation", () => {
   //ID
   it("Set an ID", () => {
     const id = "1234";
-    const emp = new Employee(id);
+    const emp = new Employee("Anna", id);
     expect(emp.id).toEqual(id);
   });
 
   //Email
   it("Set an email", () => {
     const email = "a@test.com";
-    const emp = new Employee(email);
+    const emp = new Employee("Anna", "123", email);
     expect(emp.email).toEqual(email);
   });
 
@@ -42,7 +42,7 @@ describe("Initialisation", () => {
   describe("getId", () => {
     it("Retrieve id via getId()", () => {
       const idVal = "1234";
-      const emp = new Employee(idVal);
+      const emp = new Employee("Anna", idVal);
       expect(emp.getId()).toEqual(idVal);
     });
   });
@@ -51,7 +51,7 @@ describe("Initialisation", () => {
   describe("getEmail", () => {
     it("Retrieve email via getEmail()", () => {
       const emailVal = "a@test.com";
-      const emp = new Employee(emailVal);
+      const emp = new Employee("Anna", "1234", emailVal);
       expect(emp.getEmail()).toEqual(emailVal);
     });
   });
@@ -60,7 +60,7 @@ describe("Initialisation", () => {
   describe("getRole", () => {
     it("Retrieve role via getRole()", () => {
       const roleVal = "Employee";
-      const emp = new Employee(roleVal);
+      const emp = new Employee("Anna", "1234", "a@test.com", roleVal);
       expect(emp.getRole()).toEqual(roleVal);
     });
   });

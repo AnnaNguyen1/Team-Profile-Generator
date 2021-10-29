@@ -1,4 +1,4 @@
-const Manager = require(".lib/Manager");
+const Manager = require("../lib/Manager");
 const { it, describe, expect } = require("@jest/globals");
 
 describe("Manager", () => {
@@ -12,7 +12,7 @@ describe("Manager", () => {
     it("retrieves office number from getOfficeNumber()", () => {
       const officeNumberVal = 12345678;
       const emp = new Manager("Anna", "1234", "a@test.com", officeNumberVal);
-      expect(emp.getOfficeNumber()).toEqual(officeNumber);
+      expect(emp.getOfficeNumber()).toEqual(officeNumberVal);
     });
   });
 
