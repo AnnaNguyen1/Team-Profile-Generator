@@ -1,4 +1,62 @@
-function generateHTML(data) {
+const generateHTML = (data) => {
+  let empCardArray = [];
+  for (let i = 0; data.length > i; i++) {
+    const emp = data[i];
+    switch ((empRole = emp.getRole())) {
+      case "Manager":
+        const managerCard = `<div class="col-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Manager</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Name: ${manager.name}</li>
+              <li class="list-group-item">ID:${manager.id}</li>
+              <li class="list-group-item">Email:${manager.email}</li>
+              <li class="list-group-item">Email:${manager.officeNumber}</li>
+            </ul>
+          </div>
+        </div>`;
+        empCardArray.push(managerCard);
+        break;
+      case "Engineer":
+        const engineerCard = `<div class="col-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Engineer</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Name: ${engineer.name}</li>
+              <li class="list-group-item">ID:${engineer.id}</li>
+              <li class="list-group-item">Email:${engineer.email}</li>
+              <li class="list-group-item">Email:${engineer.github}</li>
+            </ul>
+          </div>
+        </div>
+          `;
+        empCardArray.push(engineerCard);
+        break;
+      case "Intern":
+        const internCard = `<div class="col-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Intern</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Name: ${intern.name}</li>
+              <li class="list-group-item">ID:${intern.id}</li>
+              <li class="list-group-item">Email:${intern.email}</li>
+              <li class="list-group-item">Email:${intern.school}</li>
+            </ul>
+          </div>
+        </div>`;
+        empCardArray.push(internCard);
+    }
+  }
+  return empCardArray.join("");
+};
+
+function bodyHTML(data) {
   return `
   <!DOCTYPE html>
   <html lang="en">
@@ -23,7 +81,7 @@ function generateHTML(data) {
       <main>
         <section class="container results">
           <div class="d-flex flex-wrap row justify-content-center">
-          ${empCards}
+          ${generateHTML(data)}
           </div>
       </section>
     </main>
@@ -32,4 +90,4 @@ function generateHTML(data) {
     `;
 }
 
-module.exports = generateHTML;
+module.exports = bodyHTML;
