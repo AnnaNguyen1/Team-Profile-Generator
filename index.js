@@ -111,7 +111,14 @@ const addMember = () => {
 (() => {
   addMember()
     .then((answers) => console.log(answers))
-    .then((answers) => fs.writeFileSync("./dist/index.html", bodyHTML(answers)))
-    .then(() => console.log("Creating Team Profile...."))
+    .then((answers) =>
+      fs.writeFile("./dist/index.html", bodyHTML(answers), (err) => {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log("Writing team profile...");
+        }
+      })
+    )
     .catch((err) => console.error(err));
 })();
