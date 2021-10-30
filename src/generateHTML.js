@@ -11,9 +11,9 @@ const bodyHTML = (data) => {
             </div>
             <ul class="list-group list-group-flush">
               <li class="list-group-item">Name: ${emp.name}</li>
-              <li class="list-group-item">ID:${emp.id}</li>
-              <li class="list-group-item">Email:${emp.email}</li>
-              <li class="list-group-item">Office Number:${emp.officeNumber}</li>
+              <li class="list-group-item">ID: ${emp.id}</li>
+              <li class="list-group-item">Email:<a href="mailto::${emp.email}" target="_blank"> ${emp.email}</a></li>
+              <li class="list-group-item">Office Number: ${emp.officeNumber}</li>
             </ul>
           </div>
         </div>`;
@@ -27,9 +27,9 @@ const bodyHTML = (data) => {
             </div>
             <ul class="list-group list-group-flush">
               <li class="list-group-item">Name: ${emp.name}</li>
-              <li class="list-group-item">ID:${emp.id}</li>
-              <li class="list-group-item">Email:${emp.email}</li>
-              <li class="list-group-item">Github:${emp.github}</li>
+              <li class="list-group-item">ID: ${emp.id}</li>
+              <li class="list-group-item">Email:<a href="mailto::${emp.email}" target="_blank"> ${emp.email}</a></li>
+              <li class="list-group-item">Github:<a href="https://github.com/${emp.github}" target="_blank"> ${emp.github}</a></li>
             </ul>
           </div>
         </div>
@@ -44,9 +44,9 @@ const bodyHTML = (data) => {
             </div>
             <ul class="list-group list-group-flush">
               <li class="list-group-item">Name: ${emp.name}</li>
-              <li class="list-group-item">ID:${emp.id}</li>
-              <li class="list-group-item">Email:${emp.email}</li>
-              <li class="list-group-item">School:${emp.school}</li>
+              <li class="list-group-item">ID: ${emp.id}</li>
+              <li class="list-group-item">Email:<a href="mailto::${emp.email}" target="_blank"> ${emp.email}</a></li>
+              <li class="list-group-item">School: ${emp.school}</li>
             </ul>
           </div>
         </div>`;
