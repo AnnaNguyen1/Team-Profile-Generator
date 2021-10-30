@@ -102,7 +102,7 @@ const addMember = () => {
       if (data.confirmAddNew === true) {
         addMember();
       } else {
-        fs.writeFileSync("./dist/index.html", bodyHTML(empArray), (err) => {
+        fs.writeFile("./dist/index.html", bodyHTML(empArray), (err) => {
           if (err) {
             console.log(err);
           } else {
