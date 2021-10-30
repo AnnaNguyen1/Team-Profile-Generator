@@ -1,9 +1,8 @@
 const bodyHTML = (data) => {
-  console.log(data);
   let empCardArray = [];
   for (let i = 0; i < data.length; i++) {
     const emp = data[i];
-    switch ((empRole = emp.getRole())) {
+    switch (emp.getRole()) {
       case "Manager":
         const managerCard = `<div class="col-4">
           <div class="card">
@@ -54,8 +53,7 @@ const bodyHTML = (data) => {
         empCardArray.push(internCard);
     }
   }
-  const empCardHTML = empCardArray.join(""); // returns strning when concatenating all elements of an array
-  return generateHTML(empCardHTML);
+  return empCardArray.join(""); // returns string when concatenating all elements of an array
 };
 
 function generateHTML(empHTML) {
