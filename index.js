@@ -1,6 +1,6 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
-const generateHTML = require("./src/generateHTML.js");
+const bodyHTML = require("./src/generateHTML.js");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const Manager = require("./lib/Manager");
@@ -112,7 +112,7 @@ const addMember = () => {
   addMember()
     .then((answers) => console.log(answers))
     .then((answers) =>
-      fs.writeFile("./dist/index.html", bodyHTML(answers), (err) => {
+      fs.writeFileSync("./dist/index.html", bodyHTML(answers), (err) => {
         if (err) {
           console.log(err);
         } else {

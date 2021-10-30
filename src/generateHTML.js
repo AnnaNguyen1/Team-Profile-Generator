@@ -1,6 +1,6 @@
-const generateHTML = (data) => {
+const bodyHTML = (data) => {
   let empCardArray = [];
-  for (let i = 0; data.length > i; i++) {
+  for (let i = 0; i < data.length; i++) {
     const emp = data[i];
     switch ((empRole = emp.getRole())) {
       case "Manager":
@@ -53,10 +53,11 @@ const generateHTML = (data) => {
         empCardArray.push(internCard);
     }
   }
-  return empCardArray.join("");
+  const empCardHTML = empCardArray.join(""); // returns strning when concatenating all elements of an array
+  return generateHTML(empCardHTML);
 };
 
-function bodyHTML(data) {
+function generateHTML(empHTML) {
   return `
   <!DOCTYPE html>
   <html lang="en">
@@ -75,13 +76,13 @@ function bodyHTML(data) {
   
     <body>
       <header>
-        <h1 class="display-2">Team Profile</h1>
+        <h1 class="display-2 text-center">Team Profile</h1>
       </header>
   
       <main>
         <section class="container results">
           <div class="d-flex flex-wrap row justify-content-center">
-          ${generateHTML(data)}
+          ${bodyHTML(empHTML)}
           </div>
       </section>
     </main>
@@ -90,4 +91,4 @@ function bodyHTML(data) {
     `;
 }
 
-module.exports = bodyHTML;
+module.exports = generateHTML;
