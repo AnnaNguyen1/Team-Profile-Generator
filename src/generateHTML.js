@@ -1,4 +1,5 @@
 const bodyHTML = (data) => {
+  console.log(data);
   let empCardArray = [];
   for (let i = 0; i < data.length; i++) {
     const emp = data[i];
@@ -10,10 +11,10 @@ const bodyHTML = (data) => {
               <h5 class="card-title">Manager</h5>
             </div>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item">Name: ${manager.name}</li>
-              <li class="list-group-item">ID:${manager.id}</li>
-              <li class="list-group-item">Email:${manager.email}</li>
-              <li class="list-group-item">Email:${manager.officeNumber}</li>
+              <li class="list-group-item">Name: ${emp.name}</li>
+              <li class="list-group-item">ID:${emp.id}</li>
+              <li class="list-group-item">Email:${emp.email}</li>
+              <li class="list-group-item">Office Number:${emp.officeNumber}</li>
             </ul>
           </div>
         </div>`;
@@ -26,10 +27,10 @@ const bodyHTML = (data) => {
               <h5 class="card-title">Engineer</h5>
             </div>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item">Name: ${engineer.name}</li>
-              <li class="list-group-item">ID:${engineer.id}</li>
-              <li class="list-group-item">Email:${engineer.email}</li>
-              <li class="list-group-item">Email:${engineer.github}</li>
+              <li class="list-group-item">Name: ${emp.name}</li>
+              <li class="list-group-item">ID:${emp.id}</li>
+              <li class="list-group-item">Email:${emp.email}</li>
+              <li class="list-group-item">Github:${emp.github}</li>
             </ul>
           </div>
         </div>
@@ -43,10 +44,10 @@ const bodyHTML = (data) => {
               <h5 class="card-title">Intern</h5>
             </div>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item">Name: ${intern.name}</li>
-              <li class="list-group-item">ID:${intern.id}</li>
-              <li class="list-group-item">Email:${intern.email}</li>
-              <li class="list-group-item">Email:${intern.school}</li>
+              <li class="list-group-item">Name: ${emp.name}</li>
+              <li class="list-group-item">ID:${emp.id}</li>
+              <li class="list-group-item">Email:${emp.email}</li>
+              <li class="list-group-item">School:${emp.school}</li>
             </ul>
           </div>
         </div>`;

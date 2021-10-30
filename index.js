@@ -99,26 +99,19 @@ const addMember = () => {
         newMember = new Intern(name, id, email, school);
       }
       empArray.push(newMember); // Push to existing array
-      if (confirmAddNew === true) {
+      if (data.confirmAddNew === true) {
         addMember();
       } else {
-        return empArray;
+        fs.writeFileSync("./dist/index.html", bodyHTML(empArray), (err) => {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log("Writing team profile...");
+          }
+        });
       }
     });
 };
 
 // function to initiate via node index.js
-(() => {
-  addMember()
-    .then((answers) => console.log(answers))
-    .then((answers) =>
-      fs.writeFileSync("./dist/index.html", bodyHTML(answers), (err) => {
-        if (err) {
-          console.log(err);
-        } else {
-          console.log("Writing team profile...");
-        }
-      })
-    )
-    .catch((err) => console.error(err));
-})();
+addMember();
