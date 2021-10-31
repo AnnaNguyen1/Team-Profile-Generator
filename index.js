@@ -17,6 +17,22 @@ const addMember = () => {
         message: "Role of new team member:",
         choices: ["Manager", "Engineer", "Intern"],
         name: "role",
+        when: (answers) => {
+          if (answers.role != "Manager") {
+            return true;
+          }
+        },
+      },
+      {
+        type: "list",
+        message: "Role of new team member:",
+        choices: ["Engineer", "Intern"],
+        name: "role",
+        when: (answers) => {
+          if (answers.role === "Manager") {
+            return true;
+          }
+        },
       },
       {
         type: "input",
