@@ -45,6 +45,8 @@ Run the following prompt in terminal to initiate questions:
 node index.js
 ```
 
+Once all questions are answered and no other team members are required to be added, HTML file will be added into the dist folder.
+
 ![Demonstration of ](./images/htmlpage.gif)
 
 ## Questions
