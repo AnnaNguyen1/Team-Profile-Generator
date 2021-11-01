@@ -5,14 +5,14 @@ const bodyHTML = (data) => {
     switch (emp.getRole()) {
       case "Manager":
         const managerCard = `<div class="col-4">
-          <div class="card">
+          <div class="card border-dark shadow p-3 mb-5 bg-body rounded">
             <div class="card-body">
               <h5 class="card-title">Manager</h5>
             </div>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item">Name: ${emp.name}</li>
+              <li class="list-group-item">Name:<b> ${emp.name}</b></li>
               <li class="list-group-item">ID: ${emp.id}</li>
-              <li class="list-group-item">Email:<a href="mailto::${emp.email}" target="_blank"> ${emp.email}</a></li>
+              <li class="list-group-item">Email: <a href="mailto::${emp.email}" target="_blank">${emp.email}</a></li>
               <li class="list-group-item">Office Number: ${emp.officeNumber}</li>
             </ul>
           </div>
@@ -21,15 +21,15 @@ const bodyHTML = (data) => {
         break;
       case "Engineer":
         const engineerCard = `<div class="col-4">
-          <div class="card">
+          <div class="card border-dark shadow p-3 mb-5 bg-body rounded">
             <div class="card-body">
               <h5 class="card-title">Engineer</h5>
             </div>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item">Name: ${emp.name}</li>
+              <li class="list-group-item">Name:<b> ${emp.name}</b></li>
               <li class="list-group-item">ID: ${emp.id}</li>
-              <li class="list-group-item">Email:<a href="mailto::${emp.email}" target="_blank"> ${emp.email}</a></li>
-              <li class="list-group-item">Github:<a href="https://github.com/${emp.github}" target="_blank"> ${emp.github}</a></li>
+              <li class="list-group-item">Email: <a href="mailto::${emp.email}" target="_blank">${emp.email}</a></li>
+              <li class="list-group-item">Github: <a href="https://github.com/${emp.github}" target="_blank">${emp.github}</a></li>
             </ul>
           </div>
         </div>
@@ -38,14 +38,14 @@ const bodyHTML = (data) => {
         break;
       case "Intern":
         const internCard = `<div class="col-4">
-          <div class="card">
+          <div class="card border-dark shadow p-3 mb-5 bg-body rounded">
             <div class="card-body">
               <h5 class="card-title">Intern</h5>
             </div>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item">Name: ${emp.name}</li>
+              <li class="list-group-item">Name:<b> ${emp.name}</b></li>
               <li class="list-group-item">ID: ${emp.id}</li>
-              <li class="list-group-item">Email:<a href="mailto::${emp.email}" target="_blank"> ${emp.email}</a></li>
+              <li class="list-group-item">Email: <a href="mailto::${emp.email}" target="_blank">${emp.email}</a></li>
               <li class="list-group-item">School: ${emp.school}</li>
             </ul>
           </div>
@@ -75,7 +75,7 @@ function generateHTML(empHTML) {
   
     <body>
       <header>
-        <h1 class="display-2 text-center">Team Profile</h1>
+        <h1 class="display-2 text-center mt-5">Team Profile</h1>
       </header>
   
       <main>

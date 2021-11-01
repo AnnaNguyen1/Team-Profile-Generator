@@ -4,44 +4,25 @@ const bodyHTML = require("./src/generateHTML.js");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const Manager = require("./lib/Manager");
+const { triggerAsyncId } = require("async_hooks");
+const { inherits } = require("util");
+const { takeCoverage } = require("v8");
+const { createInflate } = require("zlib");
+const { RSA_PKCS1_OAEP_PADDING } = require("constants");
 
-// Required to push data to
 const empArray = [];
 
-// function to addMember - questions
-const addMember = () => {
+const init = () => {
   return inquirer
     .prompt([
       {
-        type: "list",
-        message: "Role of new team member:",
-        choices: ["Manager", "Engineer", "Intern"],
-        name: "role",
-        when: (answers) => {
-          if (answers.role != "Manager") {
-            return true;
-          }
-        },
-      },
-      {
-        type: "list",
-        message: "Role of new team member:",
-        choices: ["Engineer", "Intern"],
-        name: "role",
-        when: (answers) => {
-          if (answers.role === "Manager") {
-            return true;
-          }
-        },
-      },
-      {
         type: "input",
-        message: "Name of new team member:",
+        message: "Name of new Manager:",
         name: "name",
       },
       {
         type: "input",
-        message: "ID Number:", // ID can be alphanumerical
+        message: "ID Number:",
         name: "id",
       },
       {
@@ -62,9 +43,69 @@ const addMember = () => {
         type: "input",
         message: "Office Number:",
         name: "officeNumber",
-        when: (answers) => {
-          if (answers.role === "Manager") {
+      },
+    ])
+    .then((data) => {
+      let manager = new Manager(
+        data.name,
+        data.id,
+        data.email,
+        data.officeNumber
+      );
+      empArray.push(manager);
+      questionNewMember();
+    });
+};
+
+function questionNewMember() {
+  inquirer
+    .prompt([
+      {
+        type: "list",
+        message: "Would you like to add a new member?",
+        choices: ["Engineer", "Intern", "Done"],
+        name: "role",
+      },
+    ])
+    .then((data) => {
+      switch (data.role) {
+        case "Engineer":
+          createEng();
+          break;
+        case "Intern":
+          createInt();
+          break;
+        case "Done":
+          buildTeam();
+          break;
+      }
+    });
+}
+
+function createEng() {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        message: "Name of new team member:",
+        name: "name",
+      },
+      {
+        type: "input",
+        message: "ID Number:",
+        name: "id",
+      },
+      {
+        type: "input",
+        message: "Email address:",
+        name: "email",
+        validate: (email) => {
+          valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
+          if (valid) {
             return true;
+          } else {
+            console.log("\n Please enter an valid email!");
+            return false;
           }
         },
       },
@@ -72,9 +113,39 @@ const addMember = () => {
         type: "input",
         message: "Github Username:",
         name: "github",
-        when: (answers) => {
-          if (answers.role === "Engineer") {
+      },
+    ])
+    .then((data) => {
+      let newMember = new Engineer(data.name, data.id, data.email, data.github);
+      empArray.push(newMember);
+      questionNewMember();
+    });
+}
+
+function createInt() {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        message: "Name of new team member:",
+        name: "name",
+      },
+      {
+        type: "input",
+        message: "ID Number:",
+        name: "id",
+      },
+      {
+        type: "input",
+        message: "Email address:",
+        name: "email",
+        validate: (email) => {
+          valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
+          if (valid) {
             return true;
+          } else {
+            console.log("\n Please enter an valid email!");
+            return false;
           }
         },
       },
@@ -82,52 +153,23 @@ const addMember = () => {
         type: "input",
         message: "School name:",
         name: "school",
-        when: (answers) => {
-          if (answers.role === "Intern") {
-            return true;
-          }
-        },
-      },
-      {
-        type: "confirm",
-        message: "Would you like to add more team members?",
-        name: "confirmAddNew",
-        default: "No",
       },
     ])
     .then((data) => {
-      let newMember;
-      let {
-        role,
-        name,
-        id,
-        email,
-        officeNumber,
-        github,
-        school,
-        confirmAddNew,
-      } = data;
-      if (role === "Engineer") {
-        newMember = new Engineer(name, id, email, github);
-      } else if (role === "Manager") {
-        newMember = new Manager(name, id, email, officeNumber);
-      } else if (role === "Intern") {
-        newMember = new Intern(name, id, email, school);
-      }
-      empArray.push(newMember); // Push to existing array
-      if (data.confirmAddNew === true) {
-        addMember();
-      } else {
-        fs.writeFile("./dist/index.html", bodyHTML(empArray), (err) => {
-          if (err) {
-            console.log(err);
-          } else {
-            console.log("Writing team profile...");
-          }
-        });
-      }
+      let newMember = new Intern(data.name, data.id, data.email, data.school);
+      empArray.push(newMember);
+      questionNewMember();
     });
-};
+}
 
-// function to initiate via node index.js
-addMember();
+function buildTeam() {
+  fs.writeFile("./dist/index.html", bodyHTML(empArray), (err) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("Writing team profile...");
+    }
+  });
+}
+
+init();
